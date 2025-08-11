@@ -1,0 +1,30 @@
+{
+  "name": "notes_manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "setton": "./dist/bin/setton.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "build:watch": "npx tsc --watch",
+    "dev": "nodemon --config nodemon.json",
+    "prepublishOnly": "npx tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "figlet": "^1.8.2",
+    "inquirer": "^12.9.0",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.0",
+    "@types/node": "^24.2.0",
+    "nodemon": "^3.1.10"
+  }
+}
