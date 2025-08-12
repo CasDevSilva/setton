@@ -1,5 +1,5 @@
-import { AppFileCreate } from "../../types/AppFileCreate";
-import { getFileInformation, removeLocalFile } from "./core/local/remove";
+import { AppFileCreate } from "../../types/AppFileCreate.js";
+import { getFileInformation, removeLocalFile } from "./core/local/remove.js";
 
 export async function remove() {
     try {

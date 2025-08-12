@@ -2,7 +2,7 @@ import fs from "fs";
 import inquirer from "inquirer";
 import path from "path";
 
-import { AppFileCreate } from "../../../../types/AppFileCreate";
+import { AppFileCreate } from "../../../../types/AppFileCreate.js";
 
 export async function createLocalNote(pObjAppFile:AppFileCreate) {
     let mStrExtension = pObjAppFile.extension == ""

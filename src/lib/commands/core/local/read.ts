@@ -1,4 +1,4 @@
-import { AppFileCreate } from "../../../../types/AppFileCreate";
+import { AppFileCreate } from "../../../../types/AppFileCreate.js";
 import inquirer from "inquirer";
 import fs from "fs";
 

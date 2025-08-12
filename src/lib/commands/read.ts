@@ -1,5 +1,5 @@
-import { AppFileCreate } from "../../types/AppFileCreate";
-import { getFileInformation, readLocalNote } from "./core/local/read";
+import { AppFileCreate } from "../../types/AppFileCreate.js";
+import { getFileInformation, readLocalNote } from "./core/local/read.js";
 
 export async function read() {
     try {

@@ -1,5 +1,5 @@
-import { AppFileCreate } from "../../types/AppFileCreate";
-import { createLocalNote, readContentToWrite } from "./core/local/create";
+import { AppFileCreate } from "../../types/AppFileCreate.js";
+import { createLocalNote, readContentToWrite } from "./core/local/create.js";
 
 export async function create () {
     try {
