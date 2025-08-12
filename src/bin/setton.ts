@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { program } from "commander";
-import { init, deployMainMenu, manageCommands } from "../lib/commands/init";
-import { AppInfo } from "../types/AppInfo";
-import { AppOptions } from "../types/AppOptions";
+import { init, deployMainMenu, manageCommands } from "../lib/commands/init.js";
+import { AppInfo } from "../types/AppInfo.js";
+import { AppOptions } from "../types/AppOptions.js";
 
 program.name("setton")
     .option("-c, --create"  , "create")
