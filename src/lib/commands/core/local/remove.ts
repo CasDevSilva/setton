@@ -30,7 +30,8 @@ export async function getFileInformation () {
         filename : "",
         content  : "",
         pathfile : "",
-        extension: ""
+        extension: "",
+        categorie: 0
     };
 
     let mObjInputNote = await inquirer.prompt([
