@@ -1,12 +1,13 @@
 import pkg from "better-sqlite3";
 import fs from "fs/promises";
 import { dbFolder, dbFile } from "../../constants/config.js";
+import { insertCategorie, verifyExistCategorie } from "./tables/categories.js";
 
 const Database = pkg;
 const mObjTables = {
     categories: {
         id          : "INTEGER PRIMARY KEY AUTOINCREMENT",
-        name        : "VARCHAR(50) NOT NULL",
+        name        : "VARCHAR(50) NOT NULL UNIQUE",
         date_created: "DATETIME DEFAULT (datetime('now','localtime')) NOT NULL",
         date_updated: "DATETIME DEFAULT (datetime('now','localtime')) NOT NULL"
     },
@@ -20,6 +21,7 @@ const mObjTables = {
         content     : "TEXT NOT NULL",
         status      : "CHAR(1) NOT NULL",
         category_id : "INTEGER NOT NULL",
+        extension   : "VARCHAR(25) NOT NULL",
         date_created: "DATETIME DEFAULT (datetime('now','localtime')) NOT NULL",
         date_updated: "DATETIME DEFAULT (datetime('now','localtime')) NOT NULL",
         sql_restrictions: `
@@ -50,6 +52,12 @@ export async function buildDatabase () {
 
         Object.keys(mObjTables).forEach(mRowTable => {
             createTables(mRowTable, mObjTables[mRowTable]);
+
+            if (mRowTable == "categories") {
+                if (!verifyExistCategorie("General")) {
+                    insertCategorie("General");
+                }
+            }
         })
 
         db.close();
@@ -83,5 +91,26 @@ function createTables(pStrTableName:string, pObjTableColumns) {
         db.close();
     } catch(err) {
         throw new Error(`ERROR to create the table '${pStrTableName}'`);
+    }
+}
+
+export function insertIntoTable(pStrTable:string, pObjIntoData) {
+    try {
+        let db = connectDatabase();
+
+        let mStrStatement = db.prepare(`
+            INSERT INTO ${pStrTable} (${Object.keys(pObjIntoData).join(',')})
+            VALUES (${Object.keys(pObjIntoData).map(key => `:${key}`).join(',')})
+        `);
+
+        mStrStatement.run(pObjIntoData)
+
+        db.close();
+
+        return 1;
+    } catch(err) {
+        console.log(err);
+        console.log(`Error al insertar en la tabla ${pStrTable}`);
+        return 0;
     }
 }
