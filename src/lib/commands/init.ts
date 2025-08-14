@@ -133,7 +133,7 @@ export async function manageCommands (pObjAppInfo: AppInfo, pObjOpts: AppOptions
 
     if (mArrOptFinded) {
         try {
-            await mObjExecOpts[mArrOptFinded[0]]()
+            await mObjExecOpts[mArrOptFinded[0]](pObjAppInfo.deploy_database)
         } catch(err) {
             throw err;
         }
