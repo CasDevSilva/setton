@@ -1,4 +1,5 @@
 import { AppFileCreate } from "../../types/AppFileCreate.js";
+import { inquirer_db_option, inquirer_local_option } from "../utils/inquirer_prompts.js";
 import { getAllCategories } from "../utils/tables/categories.js";
 import { createDBNote } from "./core/database/create.js";
 import { createLocalNote } from "./core/local/create.js";
@@ -37,14 +38,7 @@ async function readContentToWrite(pBoolDatabaseDeployed:boolean) {
     mObjResponse.extension = mObjInputGeneralNote.extension;
 
     if (pBoolDatabaseDeployed) {
-        let mObjDBOptions = await inquirer.prompt([
-            {
-                name: "exec_db",
-                type: "list",
-                message: "Almacenar en Base de Datos?",
-                choices: ["Si", "No"]
-            }
-        ])
+        let mObjDBOptions = await inquirer_db_option("Almacenar en Base de Datos?");
 
         if (mObjDBOptions.exec_db == "Si") {
             let mArrCategories = [];
@@ -60,19 +54,15 @@ async function readContentToWrite(pBoolDatabaseDeployed:boolean) {
                     type: "list",
                     message: "Categoria: ",
                     choices: mArrCategories
-                },
-                {
-                    name: "save_pc",
-                    type: "list",
-                    message: "Almacenar en computador?",
-                    choices: ["Si", "No"]
                 }
             ])
+
+            let mObjLocalOptions = await inquirer_local_option("Almacenar en computador?");
 
             let mObjCategorie = mArrObjCategories.find(mRowCategorie => mRowCategorie.name == mObjDBInputNote.categorie);
             mObjResponse.categorie = mObjCategorie.id;
 
-            mBoolSavePc = mObjDBInputNote.save_pc == "Si" ? true: false;
+            mBoolSavePc = mObjLocalOptions.save_pc == "Si" ? true: false;
         } else {
             mBoolSavePc = true;
         }
