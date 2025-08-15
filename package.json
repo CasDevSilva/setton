@@ -20,7 +20,8 @@
     "better-sqlite3": "^12.2.0",
     "commander": "^14.0.0",
     "figlet": "^1.8.2",
-    "inquirer": "^12.9.0",
+    "inquirer": "^9.2.9",
+    "inquirer-autocomplete-prompt": "^3.0.1",
     "inquirer-directory": "^2.2.0",
     "typescript": "^5.9.2"
   },
