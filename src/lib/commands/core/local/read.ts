@@ -3,35 +3,19 @@ import inquirer from "inquirer";
 import fs from "fs";
 
 export async function readLocalNote(pObjAppFile:AppFileCreate) {
-    return new Promise((resolve, reject) => {
+    try {
+        let mIntTtlColumns = process.stdout.columns || 80;
+
         fs.readFile(pObjAppFile.pathfile, "utf8", (err, content) => {
             if (err) {
-                reject(err);
+                throw err;
             } else {
-                resolve(content);
+                console.log(" Contenido de la nota ".padStart(mIntTtlColumns, "="));
+                console.log(content);
+                console.log(" Fin de la nota ".padStart(mIntTtlColumns, "="));
             }
         })
-    })
-}
-
-export async function getFileInformation () {
-    let mObjResponse:AppFileCreate = {
-        filename : "",
-        content  : "",
-        pathfile : "",
-        extension: "",
-        categorie: 0
-    };
-
-    let mObjInputNote = await inquirer.prompt([
-        {
-            name: "path",
-            type: "input",
-            message: "Ruta del fichero: "
-        }
-    ])
-
-    mObjResponse.pathfile = mObjInputNote.path;
-
-    return mObjResponse;
+    } catch (err) {
+        console.log("Hubo un error al leer el fichero");
+    }
 }
