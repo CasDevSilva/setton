@@ -4,7 +4,7 @@ import inquirerPrompt from 'inquirer-autocomplete-prompt';
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 
-export async function removeDBNote() {
+export async function removeArchiveDBNote(pBoolDelete) {
     try {
         let mArrObjNotes = getNotes();
         let mObjDataNote = await inquirer.prompt([
@@ -23,7 +23,7 @@ export async function removeDBNote() {
             mObjDataNote.name.toLowerCase()
         ));
 
-        archiveNote(mObjNote.id, true);
+        archiveNote(mObjNote.id, pBoolDelete);
     } catch(err) {
         console.log("Error al eliminar la nota de la Base de Datos.");
     }

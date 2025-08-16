@@ -1,7 +1,7 @@
 import { AppFileCreate } from "../../types/AppFileCreate.js";
 import { inquirer_db_option } from "../utils/inquirer_prompts.js";
 import { getFileInformation } from "../utils/local.js";
-import { removeDBNote } from "./core/database/remove.js";
+import { removeArchiveDBNote } from "./core/database/remove.js";
 import { removeLocalFile } from "./core/local/remove.js";
 
 export async function remove(pBoolDatabaseDeployed:boolean) {
@@ -15,7 +15,7 @@ export async function remove(pBoolDatabaseDeployed:boolean) {
                 : false;
 
             if (mBoolSearchDB) {
-                await removeDBNote();
+                await removeArchiveDBNote(true);
                 mBoolReadLocal = false;
             } else {
                 mBoolReadLocal = true;
