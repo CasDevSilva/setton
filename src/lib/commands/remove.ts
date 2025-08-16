@@ -1,12 +1,31 @@
 import { AppFileCreate } from "../../types/AppFileCreate.js";
-import { getFileInformation, removeLocalFile } from "./core/local/remove.js";
+import { inquirer_db_option } from "../utils/inquirer_prompts.js";
+import { getFileInformation } from "../utils/local.js";
+import { removeDBNote } from "./core/database/remove.js";
+import { removeLocalFile } from "./core/local/remove.js";
 
-export async function remove() {
+export async function remove(pBoolDatabaseDeployed:boolean) {
     try {
-        let mObjAppFile:AppFileCreate = await getFileInformation();
-        let mObjContent = await removeLocalFile(mObjAppFile);
+        let mBoolReadLocal = true;
 
-        console.log("El fichero fue eliminado correctamente.");
+        if (pBoolDatabaseDeployed) {
+            let mObjDBOptions = await inquirer_db_option("Eliminar nota de base de Datos?");
+            let mBoolSearchDB:boolean = mObjDBOptions.exec_db == "Si"
+                ? true
+                : false;
+
+            if (mBoolSearchDB) {
+                await removeDBNote();
+                mBoolReadLocal = false;
+            } else {
+                mBoolReadLocal = true;
+            }
+        }
+
+        if (mBoolReadLocal) {
+            let mObjAppFile:AppFileCreate = await getFileInformation();
+            await removeLocalFile(mObjAppFile);
+        }
     } catch(err) {
         console.log("Hubo un error al eliminar el fichero");
     }
