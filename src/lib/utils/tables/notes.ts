@@ -28,9 +28,6 @@ export function getNotes() {
     }
 }
 
-export function getNoteByName() {}
-export function getNoteByID() {}
-
 // Operaciones Update
 
 // Operaciones Delete - Archive
