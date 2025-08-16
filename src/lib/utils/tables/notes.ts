@@ -49,7 +49,11 @@ export function archiveNote(pIntIDNote:number, pBoolDelete:boolean) {
 
         db.close();
 
-        console.log("La nota se elimino correctamente");
+        if (pBoolDelete) {
+            console.log("La nota se elimino correctamente");
+        } else {
+            console.log("La nota se archivo correctamente");
+        }
     } catch(err) {
         if (pBoolDelete) {
             console.log(`Hubo un error al eliminar la nota.`);
