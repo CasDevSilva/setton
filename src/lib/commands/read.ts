@@ -10,7 +10,9 @@ export async function read(pBoolDatabaseDeployed:boolean) {
 
         if (pBoolDatabaseDeployed) {
             let mObjDBOptions = await inquirer_db_option("Leer nota en base de Datos?");
-            let mBoolSearchDB:boolean = mObjDBOptions.exec_db == "Si" ? true: false;
+            let mBoolSearchDB:boolean = mObjDBOptions.exec_db == "Si"
+                ? true
+                : false;
 
             if (mBoolSearchDB) {
                 await readDBNote();
