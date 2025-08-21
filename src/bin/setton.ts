@@ -5,18 +5,19 @@ import { AppInfo } from "../types/AppInfo.js";
 import { AppOptions } from "../types/AppOptions.js";
 
 program.name("setton")
-    .option("-c, --create"  , "create")
-    .option("-r, --read"    , "read")
-    .option("-u, --update"  , "update")
-    .option("-d, --remove"  , "delete")
-    .option("-e, --setup"   , "setup")
-    .option("-l, --list"    , "list")
-    .option("-a, --archive" , "archive")
-    .option("-o, --restore" , "restore")
-    .option("-s, --search"  , "search")
-    .option("-t, --tag"     , "tag")
-    .option("-n, --sync"    , "sync")
-    .option("-g, --config"  , "config")
+    .option("-c, --create"   , "create")
+    .option("-r, --read"     , "read")
+    .option("-u, --update"   , "update")
+    .option("-d, --remove"   , "delete")
+    .option("-e, --setup"    , "setup")
+    .option("-l, --list"     , "list")
+    .option("-a, --archive"  , "archive")
+    .option("-o, --restore"  , "restore")
+    .option("-s, --search"   , "search")
+    .option("-t, --tag"      , "tag")
+    .option("-q, --categorie", "categorie")
+    .option("-n, --sync"     , "sync")
+    .option("-g, --config"   , "config")
     .action(async opts => {
         let mObjAppInfo:AppInfo = await init();
 
