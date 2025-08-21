@@ -1,3 +1,4 @@
+import { Categorie } from "../../../models/Categorie.js";
 import { connectDatabase, insertIntoTable } from "../database.js";
 
 export function verifyExistCategorie(pStrCategorieName:string) {
@@ -59,6 +60,6 @@ export function getAllCategories() {
     }
 }
 
-export function insertCategorie (pStrCategorieName:string) {
-    insertIntoTable("categories", {name: pStrCategorieName});
+export function insertCategorie (pObjCategorie:Categorie) {
+    insertIntoTable("categories", pObjCategorie);
 }
