@@ -28,6 +28,27 @@ export function getNotes() {
     }
 }
 
+export function getArchivedNotes() {
+    try {
+        const db = connectDatabase();
+
+        let mArrObjNotes = db.prepare(`
+            SELECT *
+              FROM notes
+             WHERE
+                status = 'A'
+            ORDER BY
+                date_created ASC
+        `).all();
+
+        db.close();
+
+        return mArrObjNotes;
+    } catch(err) {
+        console.log("Error al obtener las notas");
+    }
+}
+
 // Operaciones Update
 
 // Operaciones Delete - Archive
@@ -57,5 +78,26 @@ export function archiveNote(pIntIDNote:number, pBoolDelete:boolean) {
         } else {
             console.log(`Hubo un error al archivar la nota`);
         }
+    }
+}
+
+export function restoreNote(pIntIDNote:number) {
+    try {
+        const db = connectDatabase();
+
+        let mStrStatement = db.prepare(`
+            UPDATE notes
+               SET status = 'C'
+             WHERE
+                id = ?
+        `)
+
+        mStrStatement.run(pIntIDNote);
+
+        db.close();
+
+        console.log("La nota se restauro correctamente");
+    } catch(err) {
+        console.log("Hubo un error al restaurar la nota");
     }
 }
