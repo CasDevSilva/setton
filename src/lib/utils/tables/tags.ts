@@ -2,7 +2,7 @@ import { NoteTag } from "../../../models/NoteTag.js";
 import { Tag } from "../../../models/Tag.js";
 import { connectDatabase, insertIntoTable } from "../database.js";
 
-export function createTag(pObjTag:Tag) {
+export function insertTag(pObjTag:Tag) {
     return insertIntoTable("tags", pObjTag);
 }
 

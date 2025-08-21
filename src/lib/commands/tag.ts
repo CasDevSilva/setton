@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { addTagToNote, createTag, getNotesNotTags, getTags } from "../utils/tables/tags.js";
+import { addTagToNote, getNotesNotTags, getTags, insertTag } from "../utils/tables/tags.js";
 import { Tag } from "../../models/Tag.js";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
 import { getNotes } from "../utils/tables/notes.js";
@@ -40,7 +40,7 @@ export async function tag(){
 
             mObjInput.opt_tag.trim().split(",").forEach(rowTag => {
                 mObjTag.name = rowTag.trim();
-                let mIntResponse = createTag(mObjTag);
+                let mIntResponse = insertTag(mObjTag);
                 if (mIntResponse) {
                     mIntTtlTags += 1;
                 }
