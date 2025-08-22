@@ -43,7 +43,7 @@ export function getCategorie(pStrCategorieName: string) {
     }
 }
 
-export function getAllCategories() {
+export function getCategories() {
     try {
         let db = connectDatabase();
 

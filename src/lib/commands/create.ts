@@ -1,6 +1,6 @@
 import { AppFileCreate } from "../../types/AppFileCreate.js";
 import { inquirer_db_option, inquirer_local_option } from "../utils/inquirer_prompts.js";
-import { getAllCategories } from "../utils/tables/categories.js";
+import { getCategories } from "../utils/tables/categories.js";
 import { createDBNote } from "./core/database/create.js";
 import { createLocalNote } from "./core/local/create.js";
 import inquirer from "inquirer";
@@ -42,7 +42,7 @@ async function readContentToWrite(pBoolDatabaseDeployed:boolean) {
 
         if (mObjDBOptions.exec_db == "Si") {
             let mArrCategories = [];
-            let mArrObjCategories = getAllCategories();
+            let mArrObjCategories = getCategories();
 
             mArrObjCategories.forEach(mRowCategorie => {
                 mArrCategories.push(mRowCategorie.name);

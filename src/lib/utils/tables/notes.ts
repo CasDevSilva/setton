@@ -49,6 +49,54 @@ export function getArchivedNotes() {
     }
 }
 
+export function getNotesByCategorie(pIntCategorieID:number) {
+    try {
+        const db = connectDatabase();
+
+        let mArrObjNotes = db.prepare(`
+            SELECT *
+              FROM notes
+             WHERE
+                    status = 'C'
+                AND category_id = ?
+            ORDER BY
+                date_created ASC
+        `).all(pIntCategorieID);
+
+        db.close();
+
+        return mArrObjNotes;
+    } catch(err) {
+        console.log("Error al obtener las notas");
+    }
+}
+
+export function getNotesByTag(pIntTagID:number) {
+    try {
+        const db = connectDatabase();
+
+        let mArrObjNotes = db.prepare(`
+            SELECT *
+              FROM notes
+             WHERE
+                    status = 'C'
+                AND id IN (
+                    SELECT id_note
+                    FROM note_tags
+                    WHERE id_tag = ?
+                )
+            ORDER BY
+                date_created ASC
+        `).all(pIntTagID);
+
+        db.close();
+
+        return mArrObjNotes;
+    } catch(err) {
+        console.log("Error al obtener las notas");
+    }
+}
+
 // Operaciones Update
 
 // Operaciones Delete - Archive

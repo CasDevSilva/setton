@@ -2,6 +2,7 @@ import pkg from "better-sqlite3";
 import fs from "fs/promises";
 import { dbFolder, dbFile } from "../../constants/config.js";
 import { insertCategorie, verifyExistCategorie } from "./tables/categories.js";
+import { Categorie } from "../../models/Categorie.js";
 
 const Database = pkg;
 const mObjTables = {
@@ -86,7 +87,13 @@ export async function buildDatabase () {
 
             if (mRowTable == "categories") {
                 if (!verifyExistCategorie("General")) {
-                    insertCategorie("General");
+                    let mObjCategorie:Categorie = {
+                        name: "General",
+                        date_created: new Date().toISOString(),
+                        date_updated: new Date().toISOString(),
+                    };
+
+                    insertCategorie(mObjCategorie);
                 }
             }
         })
@@ -113,7 +120,18 @@ export function insertIntoTable(pStrTable:string, pObjIntoData) {
 
         return 1;
     } catch(err) {
-        console.log(err);
+        if (err.code == "SQLITE_CONSTRAINT_UNIQUE") {
+            if (pStrTable == "categories") {
+                console.log(`Ya existe una categoria "${pObjIntoData.name}"`);
+            }
+
+            if (pStrTable == "tags") {
+                console.log(`Ya existe un tag "${pObjIntoData.name}"`);
+            }
+        }
+        // console.log(err);
+        // console.log(err.code);
+        // console.log(Object.keys(err));
         console.log(`Error al insertar en la tabla ${pStrTable}`);
         return 0;
     }
