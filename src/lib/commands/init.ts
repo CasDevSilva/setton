@@ -28,7 +28,7 @@ async function buildObject () {
             "create",
             "read",
             "update",
-            "delete"
+            "remove"
         ],
         error: ""
     };
@@ -43,7 +43,16 @@ async function buildObject () {
     }
 
     if (mObjAppInfo.deploy_database) {
-        mObjAppInfo.choices.push("list", "archive", "restore", "search", "tag", "sync", "config");
+        mObjAppInfo.choices.push(
+            "archive",
+            "restore",
+            "list",
+            "search",
+            "tag",
+            "categorie",
+            "sync",
+            "config"
+        );
     } else {
         mObjAppInfo.choices.push("setup");
     }
@@ -70,30 +79,46 @@ export async function init () {
     return mObjAppInfo;
 }
 
-export function deployMainMenu(pObjAppInfo: AppInfo) {
+export async function deployMainMenu(pObjAppInfo: AppInfo) {
 
     let mObjDescOptions = {
-        "create" : "Create note",
-        "read"   : "Read note",
-        "update" : "Update note",
-        "remove" : "Remove note",
-        "list"   : "List notes",
-        "archive": "Archive note",
-        "restore": "Restore note",
-        "search" : "Search notes",
-        "tag"    : "Tag note",
-        "sync"   : "Sync note",
-        "setup"  : "Deploy database",
-        "config" : "View config database"
+        "create"    : "Create note",
+        "read"      : "Read note",
+        "update"    : "Update note",
+        "remove"    : "Remove note",
+        "setup"     : "Build database",
+        "archive"   : "Archive note",
+        "restore"   : "Restore note",
+        "list"      : "List by area",
+        "search"    : "Search by area",
+        "tag"       : "Tag options",
+        "categorie" : "Create categorie",
+        "sync"      : "Sync note",
+        "config"    : "View config database"
     }
 
     let mArrChoices:Array<string> = [];
+    let mObjOptions:AppOptions = {
+        create   : false,
+        read     : false,
+        update   : false,
+        remove   : false,
+        setup    : false,
+        list     : false,
+        archive  : false,
+        restore  : false,
+        search   : false,
+        tag      : false,
+        categorie: false,
+        sync     : false,
+        config   : false,
+    };
 
     pObjAppInfo.choices.forEach(mRowChoice => {
         mArrChoices.push(mObjDescOptions[mRowChoice]);
     })
 
-    inquirer.prompt([
+    let mObjOptSelected = await inquirer.prompt([
         {
             name: "action_execute",
             type: "list",
@@ -101,10 +126,16 @@ export function deployMainMenu(pObjAppInfo: AppInfo) {
             choices: mArrChoices
         }
     ])
-    .then(answer => {
-        console.log(answer)
+
+    Object.keys(mObjDescOptions).forEach(mRowKey => {
+        if (mObjDescOptions[mRowKey] == mObjOptSelected.action_execute) {
+            mObjOptions[mRowKey] = true;
+        } else {
+            mObjOptions[mRowKey] = false;
+        }
     })
-    .catch(err => console.log(err));
+
+    await manageCommands(pObjAppInfo, mObjOptions);
 }
 
 export async function manageCommands (pObjAppInfo: AppInfo, pObjOpts: AppOptions) {
