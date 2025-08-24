@@ -19,6 +19,7 @@ import { search } from "../commands/search.js";
 import { tag } from "../commands/tag.js";
 import { sync } from "../commands/sync.js";
 import { config } from "../commands/config.js";
+import { categorie } from './categorie.js';
 
 async function buildObject () {
     let mObjAppInfo:AppInfo = {
@@ -75,7 +76,7 @@ export function deployMainMenu(pObjAppInfo: AppInfo) {
         "create" : "Create note",
         "read"   : "Read note",
         "update" : "Update note",
-        "delete" : "Delete note",
+        "remove" : "Remove note",
         "list"   : "List notes",
         "archive": "Archive note",
         "restore": "Restore note",
@@ -119,7 +120,8 @@ export async function manageCommands (pObjAppInfo: AppInfo, pObjOpts: AppOptions
         search  : search,
         tag     : tag,
         sync    : sync,
-        config  : config
+        config  : config,
+        categorie: categorie,
     }
 
     let mArrOptFinded = Object.entries(pObjOpts).find(mRowOption => mRowOption[1]);

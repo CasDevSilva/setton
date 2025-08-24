@@ -17,12 +17,12 @@ export async function search() {
             },
             categorie: {
                 description: "Categoria",
-                data: getCategories(),
+                data: getCategories(true),
                 message: "De que 'categoria' quieres ver las notas?"
             },
             tag: {
                 description: "Tag",
-                data: getTags(),
+                data: getTags(true),
                 message: "De que 'tag' quieres ver las notas?"
             }
         };

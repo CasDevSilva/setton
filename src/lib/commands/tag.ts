@@ -9,7 +9,7 @@ inquirer.registerPrompt('autocomplete', inquirerPrompt);
 
 export async function tag(){
     try {
-        let mArrObjTags = getTags();
+        let mArrObjTags = getTags(false);
         let mArrTagOptions = mArrObjTags.length
             ? ["Crear un tag", "Agregar tag a nota"]
             : ["Crear un tag"];

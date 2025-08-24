@@ -42,7 +42,7 @@ async function readContentToWrite(pBoolDatabaseDeployed:boolean) {
 
         if (mObjDBOptions.exec_db == "Si") {
             let mArrCategories = [];
-            let mArrObjCategories = getCategories();
+            let mArrObjCategories = getCategories(false);
 
             mArrObjCategories.forEach(mRowCategorie => {
                 mArrCategories.push(mRowCategorie.name);
