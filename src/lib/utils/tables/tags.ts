@@ -10,11 +10,29 @@ export function addTagToNote(pObjNoteTag:NoteTag) {
     return insertIntoTable("note_tags", pObjNoteTag);
 }
 
-export function getTags() {
+export function getTags(pBoolExistsNotes: boolean) {
     try {
         const db = connectDatabase();
+        let mStrSQLCond = pBoolExistsNotes
+            ? `id IN (
+                SELECT id_tag
+                  FROM note_tags
+                 WHERE
+                    id_note IN (
+                        SELECT id
+                          FROM notes
+                         WHERE
+                            status = 'C'
+                    )
+                )`
+            : "1 = 1";
 
-        let mArrObjTags = db.prepare(`SELECT * FROM tags`).all();
+        let mArrObjTags = db.prepare(`
+            SELECT *
+              FROM tags
+             WHERE
+                ${mStrSQLCond}
+        `).all();
 
         db.close();
 

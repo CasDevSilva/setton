@@ -43,13 +43,18 @@ export function getCategorie(pStrCategorieName: string) {
     }
 }
 
-export function getCategories() {
+export function getCategories(pBoolExistsNotes: boolean) {
     try {
         let db = connectDatabase();
+        let mStrSQLCond = pBoolExistsNotes
+            ? `id IN (SELECT category_id FROM notes WHERE status = 'C')`
+            : `1 = 1`;
 
         let mArrCategories = db.prepare(`
             SELECT *
               FROM categories
+             WHERE
+                ${mStrSQLCond}
         `).all();
 
         db.close();
