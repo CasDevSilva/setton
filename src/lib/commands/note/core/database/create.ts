@@ -1,7 +1,7 @@
-import { Note } from "../../../../models/Note.js";
-import { AppFileCreate } from "../../../../types/AppFileCreate.js";
-import { getCategorie } from "../../../utils/tables/categories.js";
-import { insertNote } from "../../../utils/tables/notes.js";
+import { Note } from "../../../../../models/Note.js";
+import { AppFileCreate } from "../../../../../types/AppFileCreate.js";
+import { getCategorie } from "../../../../utils/tables/categories.js";
+import { insertNote } from "../../../../utils/tables/notes.js";
 
 export function createDBNote(pObjAppFile:AppFileCreate) {
     let mObjCategorie = getCategorie("General");

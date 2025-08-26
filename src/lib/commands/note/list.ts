@@ -1,9 +1,10 @@
 import inquirer from "inquirer";
 import Table from 'cli-table3';
-import { getListNotes, getTotalRows } from "../utils/database.js";
-import { Note } from "../../models/Note.js";
-import { Categorie } from "../../models/Categorie.js";
-import { Tag } from "../../models/Tag.js";
+
+import { getListNotes, getTotalRows } from "../../utils/database.js";
+import { Categorie } from "../../../models/Categorie.js";
+import { Tag } from "../../../models/Tag.js";
+import { Note } from "../../../models/Note.js";
 
 function showTable(pObjCurrentPageInformation, pIntPage:number, pIntLimitPage:number) {
     let mArrRows = getListNotes(pObjCurrentPageInformation.table, pObjCurrentPageInformation.sqlcond, pIntPage, pIntLimitPage);

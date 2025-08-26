@@ -1,6 +1,7 @@
-import { AppFileCreate } from "../../../../types/AppFileCreate.js";
 import fs from "fs";
-import { existFile } from "../../../utils/stats.js";
+
+import { AppFileCreate } from "../../../../../types/AppFileCreate.js";
+import { existFile } from "../../../../utils/stats.js";
 
 export async function removeLocalFile(pObjAppFile: AppFileCreate) {
     try {

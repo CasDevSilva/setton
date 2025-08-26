@@ -1,9 +1,9 @@
 import inquirer from "inquirer";
-import { addTagToNote, getNotesNotTags, getTags, insertTag } from "../utils/tables/tags.js";
-import { Tag } from "../../models/Tag.js";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
-import { getNotes } from "../utils/tables/notes.js";
-import { NoteTag } from "../../models/NoteTag.js";
+import { addTagToNote, getNotesNotTags, getTags, insertTag } from "../../utils/tables/tags.js";
+import { Tag } from "../../../models/Tag.js";
+import { getNotes } from "../../utils/tables/notes.js";
+import { NoteTag } from "../../../models/NoteTag.js";
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 

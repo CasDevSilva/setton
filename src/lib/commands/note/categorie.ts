@@ -1,6 +1,6 @@
-import { Categorie } from "../../models/Categorie.js";
 import inquirer from "inquirer";
-import { insertCategorie } from "../utils/tables/categories.js";
+import { Categorie } from "../../../models/Categorie.js";
+import { insertCategorie } from "../../utils/tables/categories.js";
 
 export async function categorie() {
     try {

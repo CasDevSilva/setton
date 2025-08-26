@@ -1,9 +1,10 @@
-import { AppFileCreate } from "../../types/AppFileCreate.js";
-import { inquirer_db_option, inquirer_local_option } from "../utils/inquirer_prompts.js";
-import { getCategories } from "../utils/tables/categories.js";
+import inquirer from "inquirer";
+
+import { AppFileCreate } from "../../../types/AppFileCreate.js";
+import { inquirer_db_option, inquirer_local_option } from "../../utils/inquirer_prompts.js";
+import { getCategories } from "../../utils/tables/categories.js";
 import { createDBNote } from "./core/database/create.js";
 import { createLocalNote } from "./core/local/create.js";
-import inquirer from "inquirer";
 
 async function readContentToWrite(pBoolDatabaseDeployed:boolean) {
     let mObjResponse:AppFileCreate = {

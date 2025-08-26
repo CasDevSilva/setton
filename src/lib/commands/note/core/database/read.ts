@@ -1,6 +1,6 @@
-import { getNotes } from "../../../utils/tables/notes.js";
 import inquirer from "inquirer";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
+import { getNotes } from "../../../../utils/tables/notes.js";
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 

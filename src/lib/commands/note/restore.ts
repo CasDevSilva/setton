@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
-import { getArchivedNotes, restoreNote } from "../utils/tables/notes.js";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
+
+import { getArchivedNotes, restoreNote } from "../../utils/tables/notes.js";
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 

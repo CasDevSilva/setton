@@ -1,24 +1,24 @@
 import inquirer from 'inquirer';
 
-import { welcomeMessage } from "../utils/messages.js";
-import { existFile } from "../utils/stats.js";
-import { dbFile } from "../../constants/config.js";
+import { AppInfo } from '../../../types/AppInfo.js';
+import { AppOptions } from '../../../types/AppOptions.js';
 
-import { AppInfo } from "../../types/AppInfo.js";
-import { AppOptions } from "../../types/AppOptions.js";
+import { welcomeMessage } from '../../utils/messages.js';
+import { existFile } from '../../utils/stats.js';
+import { dbFile } from '../../../constants/config.js';
 
-import { create } from "../commands/create.js";
-import { read } from "../commands/read.js";
-import { update } from "../commands/update.js";
-import { remove } from "../commands/remove.js";
-import { setup } from "../commands/setup.js";
-import { list } from "../commands/list.js";
-import { archive } from "../commands/archive.js";
-import { restore } from "../commands/restore.js";
-import { search } from "../commands/search.js";
-import { tag } from "../commands/tag.js";
-import { sync } from "../commands/sync.js";
-import { config } from "../commands/config.js";
+import { create } from './create.js';
+import { read } from './read.js';
+import { update } from './update.js';
+import { remove } from './remove.js';
+import { setup } from './setup.js';
+import { list } from './list.js';
+import { archive } from './archive.js';
+import { restore } from './restore.js';
+import { search } from './search.js';
+import { tag } from './tag.js';
+import { sync } from './sync.js';
+import { config } from './config.js';
 import { categorie } from './categorie.js';
 
 async function buildObject () {

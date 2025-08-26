@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
-
-import { AppFileCreate } from "../../../../types/AppFileCreate.js";
+import { AppFileCreate } from "../../../../../types/AppFileCreate.js";
 
 export async function createLocalNote(pObjAppFile:AppFileCreate) {
     let mStrFullPath = path.join(pObjAppFile.pathfile, `${pObjAppFile.filename}.${pObjAppFile.extension}`);

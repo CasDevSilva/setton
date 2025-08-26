@@ -1,5 +1,5 @@
-import { dbFile } from "../../constants/config.js";
-import { existFile } from "../utils/stats.js";
+import { dbFile } from "../../../constants/config.js";
+import { existFile } from "../../utils/stats.js";
 
 export async function config() {
     try {

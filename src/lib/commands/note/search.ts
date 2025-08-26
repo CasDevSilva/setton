@@ -1,9 +1,10 @@
 import inquirer from "inquirer";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
-import { getNotes, getNotesByCategorie, getNotesByTag } from "../utils/tables/notes.js";
-import { getTags } from "../utils/tables/tags.js";
-import { getCategories } from "../utils/tables/categories.js";
 import Table from 'cli-table3';
+
+import { getNotes, getNotesByCategorie, getNotesByTag } from "../../utils/tables/notes.js";
+import { getCategories } from "../../utils/tables/categories.js";
+import { getTags } from "../../utils/tables/tags.js";
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 

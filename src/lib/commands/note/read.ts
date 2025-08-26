@@ -1,6 +1,6 @@
-import { AppFileCreate } from "../../types/AppFileCreate.js";
-import { inquirer_db_option, inquirer_local_option } from "../utils/inquirer_prompts.js";
-import { getFileInformation } from "../utils/local.js";
+import { AppFileCreate } from "../../../types/AppFileCreate.js";
+import { inquirer_db_option } from "../../utils/inquirer_prompts.js";
+import { getFileInformation } from "../../utils/local.js";
 import { readDBNote } from "./core/database/read.js";
 import { readLocalNote } from "./core/local/read.js";
 

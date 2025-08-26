@@ -2,13 +2,14 @@ import fs from "fs/promises";
 import path from "path";
 import inquirer from "inquirer";
 import inquirerPrompt from 'inquirer-autocomplete-prompt';
-import { getNotes, getNotesByCategorie, getNotesByTag } from "../utils/tables/notes.js";
-import { getCategories } from "../utils/tables/categories.js";
-import { getTags } from "../utils/tables/tags.js";
-import { createLocalNote } from "./core/local/create.js";
-import { AppFileCreate } from "../../types/AppFileCreate.js";
-import { existFile } from "../utils/stats.js";
+
+import { existFile } from "../../utils/stats.js";
+import { AppFileCreate } from "../../../types/AppFileCreate.js";
 import { createDBNote } from "./core/database/create.js";
+import { getNotes, getNotesByCategorie, getNotesByTag } from "../../utils/tables/notes.js";
+import { getCategories } from "../../utils/tables/categories.js";
+import { getTags } from "../../utils/tables/tags.js";
+import { createLocalNote } from "./core/local/create.js";
 
 inquirer.registerPrompt('autocomplete', inquirerPrompt);
 

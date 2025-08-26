@@ -1,4 +1,4 @@
-import { buildDatabase } from "../utils/database.js";
+import { buildDatabase } from "../../utils/database.js";
 
 export async function setup() {
     try {
