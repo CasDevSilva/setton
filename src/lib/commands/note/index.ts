@@ -1,6 +1,6 @@
-import { AppInfo } from "../../../types/AppInfo.js";
+import { AppNoteInfo } from "../../../types/AppNoteInfo.js";
+import { AppNoteOptions } from "../../../types/AppNoteOptions.js";
 import { deployMainMenu, init, manageCommands } from "./init.js";
-import { AppOptions } from "../../../types/AppOptions.js";
 import { Command } from "commander";
 
 export function noteCommand(program: Command) {
@@ -19,13 +19,13 @@ export function noteCommand(program: Command) {
         .option("-n, --sync"     , "sync")
         .option("-g, --config"   , "config")
         .action(async opts => {
-            let mObjAppInfo:AppInfo = await init();
+            let mObjAppInfo:AppNoteInfo = await init();
 
             if (mObjAppInfo.error.trim()) {
                 throw mObjAppInfo.error;
             } else {
                 if (Object.keys(opts).length) {
-                    let mObjOptions: AppOptions = {
+                    let mObjOptions: AppNoteOptions = {
                         create   : false,
                         read     : false,
                         update   : false,

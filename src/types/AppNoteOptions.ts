@@ -1,4 +1,4 @@
-export interface AppOptions {
+export interface AppNoteOptions {
     create  : boolean,
     read    : boolean,
     update  : boolean,

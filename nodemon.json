@@ -3,5 +3,5 @@
         "dist/**/*"
     ],
     "ext": "js",
-    "exec": "node ./dist/bin/setton.js"
+    "exec": "node ./dist/bin/setton.js note"
 }

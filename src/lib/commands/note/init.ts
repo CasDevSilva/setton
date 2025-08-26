@@ -1,8 +1,5 @@
 import inquirer from 'inquirer';
 
-import { AppInfo } from '../../../types/AppInfo.js';
-import { AppOptions } from '../../../types/AppOptions.js';
-
 import { welcomeMessage } from '../../utils/messages.js';
 import { existFile } from '../../utils/stats.js';
 import { dbFile } from '../../../constants/config.js';
@@ -20,9 +17,11 @@ import { tag } from './tag.js';
 import { sync } from './sync.js';
 import { config } from './config.js';
 import { categorie } from './categorie.js';
+import { AppNoteOptions } from '../../../types/AppNoteOptions.js';
+import { AppNoteInfo } from '../../../types/AppNoteInfo.js';
 
 async function buildObject () {
-    let mObjAppInfo:AppInfo = {
+    let mObjAppInfo:AppNoteInfo = {
         deploy_database: false,
         choices: [
             "create",
@@ -61,7 +60,7 @@ async function buildObject () {
 }
 
 export async function init () {
-    let mObjAppInfo:AppInfo = {
+    let mObjAppInfo:AppNoteInfo = {
         deploy_database: false,
         choices: [],
         error: ""
@@ -79,7 +78,7 @@ export async function init () {
     return mObjAppInfo;
 }
 
-export async function deployMainMenu(pObjAppInfo: AppInfo) {
+export async function deployMainMenu(pObjAppInfo: AppNoteInfo) {
 
     let mObjDescOptions = {
         "create"    : "Create note",
@@ -98,7 +97,7 @@ export async function deployMainMenu(pObjAppInfo: AppInfo) {
     }
 
     let mArrChoices:Array<string> = [];
-    let mObjOptions:AppOptions = {
+    let mObjOptions:AppNoteOptions = {
         create   : false,
         read     : false,
         update   : false,
@@ -138,7 +137,7 @@ export async function deployMainMenu(pObjAppInfo: AppInfo) {
     await manageCommands(pObjAppInfo, mObjOptions);
 }
 
-export async function manageCommands (pObjAppInfo: AppInfo, pObjOpts: AppOptions) {
+export async function manageCommands (pObjAppInfo: AppNoteInfo, pObjOpts: AppNoteOptions) {
     let mObjExecOpts = {
         create  : create,
         read    : read,
